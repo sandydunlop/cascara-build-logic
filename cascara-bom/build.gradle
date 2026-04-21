@@ -1,6 +1,7 @@
 plugins {
-    id 'java-platform'
-    id 'maven-publish'
+    id("java-platform")
+    id("maven-publish")
+    id("signing")
 }
 
 
@@ -11,11 +12,23 @@ javaPlatform {
 
 dependencies {
     constraints {
-        api("org.junit.jupiter:junit-jupiter-api:5.13.4")
-        api("org.junit.jupiter:junit-jupiter-engine:5.13.4")
-        api("org.mockito:mockito-core:5.18.0")
-        api("cascara:cascara-common:0.1.0")
-        // all shared deps here
+        api 'org.junit.jupiter:junit-jupiter-api:5.13.4'
+        api 'org.junit.jupiter:junit-jupiter-params:5.13.4'
+        api 'org.junit.jupiter:junit-jupiter-engine:5.13.4'
+        api 'org.mockito:mockito-core:5.18.0'
+        api 'org.mockito:mockito-junit-jupiter:5.18.0'
+        api 'org.junit.platform:junit-platform-launcher'
+
+        api "io.github.qishr:cascara-common:0.1.2"
+        api "io.github.qishr:cascara-lang-css:0.1.0"
+        api "io.github.qishr:cascara-lang-json:0.1.0"
+        api "io.github.qishr:cascara-lang-jsonpath:0.1.0"
+        api "io.github.qishr:cascara-lang-markdown:0.1.0"
+        api "io.github.qishr:cascara-lang-xml:0.1.0"
+        api "io.github.qishr:cascara-lang-yaml:0.1.0"
+        api "io.github.qishr:cascara-schema:0.1.0"
+
+        api "commons-io:commons-io:2.16.1"
     }
 }
 
@@ -26,4 +39,9 @@ publishing {
             from components.javaPlatform
         }
     }
+}
+
+
+signing {
+    sign(publishing.publications["mavenBom"])
 }

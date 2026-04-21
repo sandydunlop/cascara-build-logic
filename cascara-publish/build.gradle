@@ -1,21 +1,29 @@
 plugins {
     id 'groovy'
     id 'java-gradle-plugin'
-    id 'maven-publish'
+    id("com.gradle.plugin-publish") version "1.2.1"
 }
+
 
 group = "io.github.qishr"
 version = "0.1.0"
 
-gradlePlugin {
-    plugins {
-        publishPlugin {
-            id = "cascara.publish"
-            implementationClass = "cascara.PublishPlugin"
-        }
-    }
-}
 
 repositories {
     mavenCentral()
+}
+
+
+gradlePlugin {
+    website = "https://github.com/qishr/cascara-build-logic"
+    vcsUrl = "https://github.com/qishr/cascara-build-logic"
+    plugins {
+        sharedConventions {
+            id = "io.github.qishr.cascara.publish"
+            implementationClass = "cascara.PublishPlugin"
+            displayName = "Cascara Publishing Conventions"
+            description = "Shared Publishing conventions for Cascara projects"
+            tags = ["cascara", "conventions"]
+        }
+    }
 }

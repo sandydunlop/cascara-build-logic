@@ -18,28 +18,30 @@ class PublishPlugin implements Plugin<Project> {
                 project.publishing {
                     publications { pubs ->
 
-                        // Gradle plugin projects
-                        if (project.plugins.hasPlugin("java-gradle-plugin")) {
-                            pubs.withType(MavenPublication).configureEach { pub ->
+                        project.plugins.withId("java-gradle-plugin") {
+                            project.publishing.publications.withType(MavenPublication).configureEach { pub ->
                                 configurePom(pub, project)
                             }
                         }
 
-                        // Java libraries
-                        if (project.plugins.hasPlugin("java-library")) {
-                            pubs.create("mavenJava", MavenPublication) { pub ->
+
+                        project.plugins.withId("java-library") {
+                            project.publishing.publications.create("mavenJava", MavenPublication) { pub ->
                                 pub.from(project.components.getByName("java"))
                                 configurePom(pub, project)
                             }
                         }
 
-                        // BOMs
-                        if (project.plugins.hasPlugin("java-platform")) {
-                            pubs.create("mavenBom", MavenPublication) { pub ->
-                                pub.from(project.components.getByName("javaPlatform"))
-                                configurePom(pub, project)
+
+                        project.plugins.withId("java-platform") {
+                            if (!publishing.publications.names.contains("mavenBom")) {
+                                project.publishing.publications.create("mavenBom", MavenPublication) { pub ->
+                                    pub.from(project.components.getByName("javaPlatform"))
+                                    configurePom(pub, project)
+                                }
                             }
                         }
+
                     }
 
                     repositories {
@@ -59,6 +61,22 @@ class PublishPlugin implements Plugin<Project> {
                 project.signing {
                     sign project.publishing.publications
                 }
+
+                // Ensure each publish task depends on its matching sign task
+                project.publishing.publications.all { publication ->
+                    def pubName = publication.name.capitalize()
+
+                    def signTask = project.tasks.named("sign${pubName}Publication")
+
+                    project.tasks.matching { it.name == "publish${pubName}PublicationToMavenLocal" }.configureEach {
+                        dependsOn(signTask)
+                    }
+
+                    project.tasks.matching { it.name == "publish${pubName}PublicationToMavenRepository" }.configureEach {
+                        dependsOn(signTask)
+                    }
+                }
+
             }
         }
     }

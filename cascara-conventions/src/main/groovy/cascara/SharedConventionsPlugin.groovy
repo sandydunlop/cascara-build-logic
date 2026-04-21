@@ -68,50 +68,5 @@ class SharedConventionsPlugin implements Plugin<Project> {
                 'Build-Date': new Date().toString()
             )
         }
-
-        // --- Signing ---
-        project.extensions.configure(org.gradle.plugins.signing.SigningExtension) { signing ->
-            signing.sign project.extensions.getByType(org.gradle.api.publish.PublishingExtension).publications
-        }
-
-        // --- Publishing ---
-        project.extensions.configure(org.gradle.api.publish.PublishingExtension) { publishing ->
-            publishing.publications {
-                pub(org.gradle.api.publish.maven.MavenPublication) {
-                    from project.components.java
-                    pom {
-                        name = project.findProperty('maven_name')
-                        description = project.findProperty('title')
-                        url = "https://qishr.github.io/${project.findProperty('maven_name')}"
-                        licenses {
-                            license {
-                                name = "Apache License, Version 2.0"
-                                url = "https://www.apache.org/licenses/LICENSE-2.0"
-                            }
-                        }
-                        developers {
-                            developer {
-                                id = 'qishr'
-                                name = 'Sandy Dunlop'
-                                email = 'sandy.dunlop@gmail.com'
-                            }
-                        }
-                        scm {
-                            def n = project.findProperty('maven_name')
-                            connection = "scm:git:git://github.com/qishr/${n}.git"
-                            developerConnection = "scm:git:ssh://github.com:qishr/${n}.git"
-                            url = "https://github.com/qishr/${n}"
-                        }
-                    }
-                }
-            }
-
-            publishing.repositories {
-                maven {
-                    name = "LocalMaven"
-                    url = project.layout.buildDirectory.dir("staging-deploy")
-                }
-            }
-        }
     }
 }
