@@ -4,14 +4,21 @@ plugins {
     id 'maven-publish'
 }
 
+
 gradlePlugin {
     plugins {
         sharedConventions {
-            id = 'cascara.shared-conventions'
-            implementationClass = 'cascara.SharedConventionsPlugin'
+            id = "cascara.java-library"
+            implementationClass = "cascara.JavaLibraryConventionsPlugin"
         }
     }
 }
+
+
+dependencies {
+    implementation project(":cascara-conventions")
+}
+
 
 repositories {
     mavenCentral()

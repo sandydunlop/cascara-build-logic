@@ -1,0 +1,21 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = "io.github.qishr"
+version = "0.1.0"
+
+gradlePlugin {
+    plugins {
+        publishPlugin {
+            id = "cascara.publish"
+            implementationClass = "cascara.PublishPlugin"
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}

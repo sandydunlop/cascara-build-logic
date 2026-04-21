@@ -1,0 +1,29 @@
+plugins {
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+
+javaPlatform {
+    allowDependencies()
+}
+
+
+dependencies {
+    constraints {
+        api("org.junit.jupiter:junit-jupiter-api:5.13.4")
+        api("org.junit.jupiter:junit-jupiter-engine:5.13.4")
+        api("org.mockito:mockito-core:5.18.0")
+        api("cascara:cascara-common:0.1.0")
+        // all shared deps here
+    }
+}
+
+
+publishing {
+    publications {
+        mavenBom(MavenPublication) {
+            from components.javaPlatform
+        }
+    }
+}

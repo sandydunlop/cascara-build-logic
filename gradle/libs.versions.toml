@@ -1,0 +1,14 @@
+[versions]
+cascara-common = "0.1.2"
+cascara-lang-css = "0.1.0"
+cascara-lang-json = "0.1.0"
+cascara-lang-jsonpath = "0.1.0"
+cascara-lang-markdown = "0.1.0"
+cascara-lang-xml = "0.1.0"
+cascara-lang-yaml = "0.1.1"
+cascara-macos-files = "1.1.0"
+cascara-schema = "0.1.1"
+junit = "5.13.4"
+mockito = "5.18.0"
+
+[libraries]

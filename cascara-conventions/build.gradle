@@ -1,0 +1,20 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+
+gradlePlugin {
+    plugins {
+        sharedConventions {
+            id = "cascara.shared-conventions"
+            implementationClass = "cascara.SharedConventionsPlugin"
+        }
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
