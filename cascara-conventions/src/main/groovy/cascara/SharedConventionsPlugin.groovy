@@ -27,6 +27,7 @@ class SharedConventionsPlugin implements Plugin<Project> {
         // --- runtimeModulePath task ---
         project.tasks.register('runtimeModulePath', Copy) { t ->
             t.dependsOn project.tasks.named('jar')
+            t.from project.tasks.named('jar')
             t.from project.configurations.runtimeClasspath
             t.duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
             t.into project.layout.buildDirectory.dir('modulepath')
