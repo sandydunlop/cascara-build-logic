@@ -20,7 +20,7 @@ gradlePlugin {
     vcsUrl = "https://github.com/qishr/cascara-build-logic"
     plugins {
         sharedConventions {
-            id = "io.github.qishr.cascara.java-library"
+            id = "cascara.java-library"
             implementationClass = "cascara.JavaLibraryConventionsPlugin"
             displayName = "Cascara Java Library Conventions"
             description = "Shared Java Library conventions for Cascara projects"

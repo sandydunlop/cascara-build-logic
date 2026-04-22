@@ -19,7 +19,7 @@ gradlePlugin {
     vcsUrl = "https://github.com/qishr/cascara-build-logic"
     plugins {
         sharedConventions {
-            id = "io.github.qishr.cascara.publish"
+            id = "cascara.publish"
             implementationClass = "cascara.PublishPlugin"
             displayName = "Cascara Publishing Conventions"
             description = "Shared Publishing conventions for Cascara projects"

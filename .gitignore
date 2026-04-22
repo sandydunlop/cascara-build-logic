@@ -2,3 +2,10 @@
 /.gradle
 .settings/org.eclipse.buildship.core.prefs
 .vscode/settings.json
+/cascara-bom/.settings
+cascara-conventions/.classpath
+/cascara-conventions/.settings
+/cascara-java-library/.settings
+cascara-java-library/.classpath
+cascara-publish/.classpath
+/cascara-publish/.settings

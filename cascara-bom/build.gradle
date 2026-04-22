@@ -19,14 +19,22 @@ dependencies {
         api 'org.mockito:mockito-junit-jupiter:5.18.0'
         api 'org.junit.platform:junit-platform-launcher'
 
+        api 'org.testfx:testfx-core:4.0.18'
+        api 'org.testfx:testfx-junit5:4.0.18'
+        api 'org.openjfx:javafx-controls:17.0.6'
+
         api "io.github.qishr:cascara-common:0.1.2"
         api "io.github.qishr:cascara-lang-css:0.1.0"
+        api "io.github.qishr:cascara-lang-java:0.1.0"
         api "io.github.qishr:cascara-lang-json:0.1.0"
         api "io.github.qishr:cascara-lang-jsonpath:0.1.0"
         api "io.github.qishr:cascara-lang-markdown:0.1.0"
         api "io.github.qishr:cascara-lang-xml:0.1.0"
         api "io.github.qishr:cascara-lang-yaml:0.1.0"
         api "io.github.qishr:cascara-schema:0.1.0"
+
+        api 'io.github.qishr:cascara-macos-files:1.1.0'
+        api 'io.github.qishr:cascara-macos-menus:0.1.0'
 
         api "commons-io:commons-io:2.16.1"
     }
@@ -37,6 +45,18 @@ publishing {
     publications {
         mavenBom(MavenPublication) {
             from components.javaPlatform
+        }
+    }
+    repositories {
+        maven {
+            name = "MavenCentral"
+            url = version.endsWith("SNAPSHOT")
+                ? uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                : uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = findProperty("ossrhUsername")
+                password = findProperty("ossrhPassword")
+            }
         }
     }
 }
