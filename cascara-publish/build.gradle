@@ -5,7 +5,7 @@ plugins {
 }
 
 
-group = "io.github.qishr"
+group = "cascara.build"
 version = "0.1.0"
 
 
@@ -19,11 +19,11 @@ gradlePlugin {
     vcsUrl = "https://github.com/qishr/cascara-build-logic"
     plugins {
         sharedConventions {
-            id = "cascara.publish"
+            id = "cascara.build.publish"
             implementationClass = "cascara.PublishPlugin"
             displayName = "Cascara Publishing Conventions"
             description = "Shared Publishing conventions for Cascara projects"
-            tags = ["cascara", "conventions"]
+            tags = ["artifact-signing", "release-setup", "metadata-configuration", "version-coordination", "artifact-structure"]
         }
     }
 }

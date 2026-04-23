@@ -31,7 +31,7 @@ dependencies {
         api "io.github.qishr:cascara-lang-markdown:0.1.0"
         api "io.github.qishr:cascara-lang-xml:0.1.0"
         api "io.github.qishr:cascara-lang-yaml:0.1.0"
-        api "io.github.qishr:cascara-schema:0.1.0"
+        api "io.github.qishr:cascara-schema:0.1.1"
 
         api 'io.github.qishr:cascara-macos-files:1.1.0'
         api 'io.github.qishr:cascara-macos-menus:0.1.0'

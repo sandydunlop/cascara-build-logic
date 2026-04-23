@@ -5,6 +5,10 @@ plugins {
 }
 
 
+group = "cascara.build"
+version = "0.1.0"
+
+
 dependencies {
     implementation project(":cascara-conventions")
 }
@@ -20,11 +24,11 @@ gradlePlugin {
     vcsUrl = "https://github.com/qishr/cascara-build-logic"
     plugins {
         sharedConventions {
-            id = "cascara.java-library"
+            id = "cascara.build.java-library"
             implementationClass = "cascara.JavaLibraryConventionsPlugin"
             displayName = "Cascara Java Library Conventions"
             description = "Shared Java Library conventions for Cascara projects"
-            tags = ["cascara", "conventions"]
+            tags = ["java-setup", "api-configuration", "test-setup", "jar-manifest", "toolchain-configuration"]
         }
     }
 }

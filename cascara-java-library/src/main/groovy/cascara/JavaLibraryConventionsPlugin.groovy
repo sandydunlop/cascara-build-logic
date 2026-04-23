@@ -7,6 +7,6 @@ class JavaLibraryConventionsPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         project.pluginManager.apply("java-library")
-        project.pluginManager.apply("cascara.shared-conventions")
+        project.pluginManager.apply("cascara.build.shared-conventions")
     }
 }
